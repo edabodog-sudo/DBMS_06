@@ -510,6 +510,8 @@ ORDER BY tage_ausgeliehen DESC;
 
 > *Describe the result: how many open loans are there, and which member has
 > held a book the longest?*
+There are 4 open loans.
+The member who has held a book the longest is Lea Hartmann (47 days).
 
 ---
 
@@ -530,7 +532,10 @@ ORDER BY ausleihen_gesamt DESC;
 ```
 
 > *Which member has the most loans? What does `FILTER (WHERE ...)` do here
-> compared to a `CASE WHEN` expression?*
+> compared to a `CASE WHEN` expression?*The member with the most loans is Jonas Berger (4 loans).FILTER counts only the rows that match the condition.
+It is the same as CASE WHEN, but shorter and easier.
+
+
 
 ---
 
@@ -552,7 +557,12 @@ WHERE  NOT EXISTS (
 ```
 
 > *Which books appear in the result? Verify the result manually against the
-> data you entered.*
+> data you entered.*The books in the result are:
+"Das Parfum" (publisher: Fischer)
+"Der Vorleser" (publisher: Diogenes)
+
+These books have never been borrowed in my data.
+
 
 > **Screenshot 7:** Take a screenshot showing the output of all three queries
 > in sequence in the `psql` shell.
@@ -565,19 +575,32 @@ WHERE  NOT EXISTS (
 performed to always produce a correct result, and does the join order affect
 correctness or only performance?
 
-> *Your answer:*
+> *Your answer:*The joins can be done in any order. 
+The result is always the same because the join conditions fix the links.
+The join order only changes performance, not correctness.
+
 
 **Question 7.2:** Query 2 groups by `m.mitglied_id` in addition to the name
 columns. Why is grouping by the primary key necessary even though names appear
 unique in the sample data?
 
-> *Your answer:*
+> *Your answer:*We group by the primary key because it is always unique.
+Names can look unique in our small data, but in real life names can repeat.
+The primary key makes sure the groups are always correct.
+
 
 **Question 7.3:** Query 3 uses `NOT EXISTS` with a correlated subquery. Rewrite
 the query using `EXCEPT` and verify that both variants return the same result.
 Write your rewritten query here:
 
-> *Your rewritten query:*
+> *Your rewritten query:*SELECT titel, verlag
+FROM buch
+EXCEPT
+SELECT b.titel, b.verlag
+FROM buch b
+JOIN exemplar e ON e.isbn = b.isbn
+JOIN ausleihe a ON a.exemplar_id = e.exemplar_id;
+
 
 Exit `psql`:
 
