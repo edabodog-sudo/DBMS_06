@@ -264,19 +264,25 @@ Inspect the structure of one table:
 and `mitglied` before `ausleihe`. Why does this order matter? What error would
 PostgreSQL report if you tried to create `ausleihe` first?
 
-> *Your answer:*
+> *Your answer:*The order matters because of foreign key dependencies. A table must exist before another table can reference it. If ausleihe is created first, PostgreSQL will return an error like:
+ERROR: relation "exemplar" does not exist or ERROR: relation "mitglied" does not exist.
 
 **Question 4.2:** The `mitglied_id` and `ausleihe_id` columns use
 `GENERATED ALWAYS AS IDENTITY`. What does this mean? What happens if you try to
 supply a value explicitly with `INSERT INTO mitglied (mitglied_id, ...) VALUES (5, ...)`?
 
-> *Your answer:*
+> *Your answer:*GENERATED ALWAYS AS IDENTITY means PostgreSQL automatically creates a new unique number for each row. You are not supposed to provide the ID yourself. If you try to insert a value manually.PostgreSQL will reject it and return an error.
 
 **Question 4.3:** `tagesgebuehr` is defined as `NUMERIC(6,2)` while a simpler
 `REAL` would also hold decimal numbers. Give a concrete example of an arithmetic
 result that would differ between the two types when calculating a lending fee.
 
-> *Your answer:*
+> *Your answer:*NUMERIC(6,2) stores exact decimal values, while REAL uses floating‑point and can introduce rounding errors. For example, calculating a fee like:1.10 * 3
+> With NUMERIC(6,2) the result is exactly:3.30
+> With REAL it might become something like:3.2999999523
+
+
+
 
 ---
 
