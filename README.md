@@ -758,19 +758,32 @@ ORDER BY reservierungen DESC;
 constraint. What does this prevent, and at which level is this constraint
 enforced — application or database?
 
-> *Your answer:*
+> *Your answer:*The UNIQUE (vorstellung_id, sitzplatz) prevents two people from taking the same seat in the same show.
+It stops double bookings.
+The rule is enforced by the database, not the application.
+
 
 **Question 9.2:** The third query uses `LEFT JOIN` between `vorstellung` and
 `reservierung`. What would be different about the result if you used `JOIN`
 (inner join) instead? Which films would disappear from the result and why?
 
-> *Your answer:*
+> *Your answer:*LEFT JOIN keeps all shows, even if they have no reservations.
+JOIN (inner join) keeps only shows that have at least one reservation.
+If we use JOIN, all films with zero reservations disappear.
+They disappear because there is no matching row in reservierung.
+
 
 **Question 9.3:** `ON DELETE CASCADE` was chosen for `reservierung.vorstellung_id`,
 but `ON DELETE RESTRICT` for `vorstellung.film_id`. Justify both choices in
 terms of the domain.
 
-> *Your answer:*
+> *Your answer:*ON DELETE CASCADE is correct for reservierung.vorstellung_id because:
+If a show is deleted, all its reservations must also be deleted.
+A reservation without a show makes no sense.
+ON DELETE RESTRICT is correct for vorstellung.film_id because:
+You cannot delete a film that still has planned shows.
+The film must stay as long as there are Vorstellungen using it.
+
 
 Exit `psql`:
 
@@ -787,7 +800,13 @@ SQLite (DBMS_05) and PostgreSQL (this exercise) are both relational databases,
 but they operate very differently. Name two concrete differences you experienced
 in this exercise — in terms of setup, access control, or SQL behaviour.
 
-> *Your answer:*
+> *Your answer:*SQLite was very easy to set up. It needed no server and no password.
+PostgreSQL needed a real server, a user account, and access rights.
+SQLite had no access control.
+PostgreSQL forced us to use a username, password, and permissions.
+SQLite ran the SQL file directly.
+PostgreSQL needed a database first, then we ran the script inside it.
+
 
 **Question B – COPY vs. INSERT:**  
 You inserted the `buch` and `exemplar` rows one at a time, and the `ausleihe`
@@ -795,21 +814,34 @@ rows via `COPY`. For a real import of 50,000 rows, which approach would you
 choose and why? What is the main operational cost of individual `INSERT`
 statements at scale?
 
-> *Your answer:*
+> *Your answer:*For 50,000 rows I would choose COPY.
+COPY is much faster for large imports.
+INSERT is slow because each INSERT has its own transaction and its own checks.
+The main cost is the overhead of many separate statements.
+
 
 **Question C – Role model:**  
 You created a dedicated role with `LOGIN` and a password. The `postgres`
 superuser also exists. What is the security principle behind creating a
 separate role instead of always connecting as `postgres`?
 
-> *Your answer:*
+> *Your answer:*The idea is: do not use the superuser for normal work.
+The postgres superuser can do everything, even dangerous actions.
+A normal role with LOGIN has only the rights it needs.
+This follows the security principle of least privilege.
+
 
 **Question D – Script-driven setup:**  
 The `kino.sql` script creates the schema and inserts data in one run. What
 is the advantage of this approach over typing the statements interactively?
 Name one situation where an interactive approach is still preferable.
 
-> *Your answer:*
+> *Your answer:*A script is better because it always does the same steps.
+It is repeatable, fast, and avoids typing mistakes.
+You can recreate the whole database in one run.
+Interactive typing is better when you want to test small changes,
+try ideas, or debug one statement at a time.
+
 
 ---
 
