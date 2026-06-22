@@ -98,7 +98,8 @@ psql --version
 
 > **Screenshot 2:** Take a screenshot showing the output of both commands.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="735" height="92" alt="screenshot2" src="https://github.com/user-attachments/assets/2bfbc21a-4c63-461b-b296-24ae3e84d906" />
+
 
 ---
 
@@ -154,7 +155,8 @@ Exit the superuser session:
 > **Screenshot 3:** Take a screenshot showing the `CREATE ROLE`, `CREATE DATABASE`,
 > and both `SELECT` results inside the `postgres=#` session.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="987" height="360" alt="screenshot3" src="https://github.com/user-attachments/assets/556217b2-da15-418a-a8cd-768e3c43d9b4" />
+
 
 ---
 
@@ -256,7 +258,8 @@ Inspect the structure of one table:
 > **Screenshot 4:** Take a screenshot showing the output of `\dt` and
 > `\d ausleihe`.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="1315" height="587" alt="Screenshot 4" src="https://github.com/user-attachments/assets/c1abf1a9-a681-4734-88cb-d153e32201b7" />
+
 
 ### Questions for Section 4
 
@@ -367,7 +370,8 @@ SELECT COUNT(*) FROM mitglied;
 
 > **Screenshot 5:** Take a screenshot showing the three `COUNT(*)` results.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="851" height="400" alt="Screenshot 5" src="https://github.com/user-attachments/assets/30a5d2cf-9271-43a5-b65a-e5ddfe9bfae2" />
+
 
 Exit `psql`:
 
@@ -452,7 +456,8 @@ SELECT * FROM ausleihe;
 
 > **Screenshot 6:** Take a screenshot showing the full output of `SELECT * FROM ausleihe`.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="880" height="272" alt="Screenshot 6" src="https://github.com/user-attachments/assets/a23a2972-4ef0-4757-bde4-76c0441a5685" />
+
 
 ### Questions for Section 6
 
@@ -567,7 +572,9 @@ These books have never been borrowed in my data.
 > **Screenshot 7:** Take a screenshot showing the output of all three queries
 > in sequence in the `psql` shell.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="702" height="400" alt="query 1" src="https://github.com/user-attachments/assets/39992587-f378-4146-8b65-c49bb029134d" /><img width="977" height="815" alt="query 2 et 3" src="https://github.com/user-attachments/assets/c65b3b50-894a-4d67-9c89-96cdd6773037" />
+
+
 
 ### Questions for Section 7
 
@@ -697,7 +704,8 @@ psql -U <your-username> -d kino -f kino.sql
 
 > **Screenshot 8:** Take a screenshot showing the script execution output.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="652" height="172" alt="Screenshot 8" src="https://github.com/user-attachments/assets/d8d6f8c7-bc4f-42b3-b266-7ce2ae1bba17" />
+
 
 ---
 
@@ -750,7 +758,9 @@ ORDER BY reservierungen DESC;
 > **Screenshot 9:** Take a screenshot showing the output of all three
 > `SELECT` statements.
 >
-> `[insert screenshot]`
+> `[insert screenshot]`<img width="685" height="565" alt="Screenshot 9 partie 1" src="https://github.com/user-attachments/assets/842ab8cf-491b-49c1-bfaf-e234e5896721" /><img width="672" height="347" alt="Screenshot 9 partie 2 " src="https://github.com/user-attachments/assets/ffd0538e-9e7a-4ae7-8e34-d7caadb17b56" />
+
+
 
 ### Questions for Section 9
 
